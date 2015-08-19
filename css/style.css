@@ -1,0 +1,746 @@
+.virtualBody *{
+	margin: 0px;
+	padding: 0px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+.virtualBody ul, .virtualBody li{
+	list-style: none;
+	margin: 0px;
+}
+
+.virtualBody{
+	width:100%;
+	height:100%;
+	min-height:100%;
+	line-height: 1;
+	background:#FFF;
+	overflow: hidden;
+	position: fixed;
+	top:0;
+	left:0;
+	z-index: -999999999999;
+	visibility: hidden;
+	opacity: 0;
+	transition:all 0.5s;
+	-ms-transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-o-transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+}
+
+.popBox{
+	position: fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	z-index: 9998;
+	display: none;
+}
+
+.popBox > div.boxMsg{
+	max-width:300px;
+	width:100%;
+	border:1px solid #EAEAEA;
+	background: white;
+	position: absolute;
+	overflow: hidden;
+	left:50%;
+	top:50%;
+	border-radius:5px;
+}
+
+div.boxMsg > div.message{
+	font-size: 20px;
+	color:#8D8D8D;
+	padding:20px;
+	line-height: 1.5;
+}
+
+div.boxMsg > div.as-footer span{
+	font-size: 25px;
+	color:#9BCF63;
+	padding:20px 0;
+	display: block;
+	cursor: pointer;
+}
+
+div.border-right{
+	border-right:1px solid #EAEAEA;
+}
+
+div.boxMsg .border-top{
+	border-top:1px solid #EAEAEA;
+}
+
+.footerAs{
+	visibility: hidden;
+	display: none;
+}
+
+#printPdfAS{
+    position: absolute;
+    top: 0%;
+    left:0;
+    display: none;
+}
+
+@media print { 
+
+	html, body{
+		position: relative;
+		overflow: visible !important;
+	}
+
+	.no-print{
+		display: none !important;
+	}
+
+	canvas{
+		width:192mm;
+		top:0mm !important;
+		overflow: visible;
+		border-style: none !important;
+	}
+
+	*{
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+   	}
+
+	.wrapperAS{
+		overflow: visible;
+		width:194mm !important;
+		top:-7mm !important;
+		left:0% !important;
+		border-style: none !important;
+	}
+
+	.sliderCanvas{
+		border-style: none !important;
+	}
+
+	.footerAs{
+		display: block;
+		visibility: visible;
+		position: fixed;
+		bottom:1mm;
+		left:2mm;
+		margin:auto;
+		width:190mm;
+	}
+
+	.virtualBody{
+		overflow: visible;
+	}
+
+	@page 
+    {
+        size: protrait;
+        margin: 2mm;
+    }
+
+    /*.virtualBody{
+		width:100%;
+		height:100%;
+		line-height: 1;
+		background:#5CBC00;
+		overflow: hidden;
+		position: fixed;
+		top:0%;
+		left:0%;
+		z-index: -999999999999;
+		visibility: visible;
+		opacity: 1;
+		z-index: 999999999999999999999;
+		transition:all 0.5s;
+		-ms-transition:all 0.5s;
+		-moz-transition:all 0.5s;
+		-o-transition:all 0.5s;
+		-webkit-transition:all 0.5s;
+	}*/
+}
+
+.footerAS{
+	display: none;
+}
+
+.wrapperAS{
+	position: absolute;
+	height:100%;
+	width:100%;
+	border:5px solid #5CBC00;
+}
+
+.sectionButtons{
+	background: white;
+	min-height:0px;
+	max-height:42px;
+	height:42px;
+	border-bottom:3px solid black;
+	overflow: hidden;
+	padding:5px 0;
+}
+
+#wrapCanvas{
+	background:white;
+	position: relative;
+}
+
+canvas{
+	/*cursor: pointer;*/
+	background: transparent;
+	position: absolute;
+	top:0;
+	left:0;
+}
+
+.sliderCanvas{
+	border-bottom:1px solid black;
+}
+
+.tools{
+	/*border-top:3px solid white;*/
+	background: white;
+	padding:3px 0 0;
+	position: fixed;
+	left:0;
+	bottom:0;
+	width:100%;
+	height:auto;
+	border-left:5px solid #5CBC00;
+	border-right:5px solid #5CBC00;
+	border-bottom:5px solid #5CBC00;
+	z-index: 10;
+	/*border-top:3px solid white;
+	background: white;
+	padding:5px 0;*/
+}
+
+.fluid-tools{
+	display: inline-block;
+	max-height:64px;
+	min-height:0px;
+}
+
+.btn-header span{
+	cursor: pointer;
+}
+
+span.btns{
+	display: block;
+	width: 32px;
+	height: 32px;
+}
+
+.bullets{
+	margin-top:5px;
+	max-height:22px;
+	min-height:0px;
+}
+
+.bullets ul.list-page{
+	display: inline-block;
+	position: relative;
+	z-index: 3;
+}
+
+.bullets .prev, .bullets .next{
+	width: 22px;
+	height: 22px;
+	font-size: 22px;
+	vertical-align: top;
+	text-align: center;
+	color:#64BF35;
+}
+
+.bullets .prev[disabled], .bullets .next[disabled]{
+	color:#CAE5B9;
+}
+
+li.bullet > span, li.bullet > a{
+	display: block;
+	background:#CAE5B9;
+	width:22px;
+	height:22px;
+	border-radius:16px;
+	text-indent: -99999999999px;
+	cursor: pointer;
+}
+
+li.bullet.selected > span, li.bullet.selected > a{
+	display: block;
+	background:#3B9E00;
+	width:22px;
+	height:22px;
+	border-radius:16px;
+	cursor: default;
+}
+
+/* ------------------------- BUTTONS BACKGROUNDS ------------------------- */
+.btn-sprites{
+	background: url('../sources/src/iconos-header.svg') no-repeat #FFF;
+	background-size: 600% 200%;
+}
+
+.btn-sprites-svg{
+	background: url('../sources/src/icons-top.svg') no-repeat #FFF;
+	background-size: 300% 100%;
+}
+
+.btn-sprites.save{
+	background-position: -96px 100%;
+}
+
+.btn-sprites-svg.save{
+	background-position: 50% 0%;
+}
+
+.btn-sprites-svg.print{
+	background-position: 100% 0%;
+}
+
+.btn-sprites.print{
+	background-position: -128px 100%;
+}
+
+.btn-sprites.closed{
+	background-position: -160px 100%;
+}
+
+.btn-sprites-svg.new{
+	background-position: 0% 0%;
+}
+
+.btn-sprites.new{
+	background-position: -64px 100%;
+}
+
+.btn-sprites.prev{
+	background-position: 0% 100%;
+}
+
+.btn-sprites.next{
+	background-position: -32px 100%;
+}
+
+.btn-sprites.prev[disabled]{
+	background-position: 0px 0% !important;
+}
+
+.btn-sprites.next[disabled]{
+	background-position: -32px 0% !important;
+}
+
+.sprites{
+	background: url('../sources/src/icons.svg') no-repeat;
+  	display: block;
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	overflow: hidden;
+	outline: none;
+	background-size: 500% 500%;
+	background-attachment: scroll;
+}
+
+.sprites.paint{
+	background-position: 0% 100%;
+}
+
+.sprites.tableColors{
+	background-position: 25% 100%;
+}
+
+/* Pencils List */
+
+.sprites.brush{
+	background-position: 25% 75%;
+}
+
+.selected-tool{
+	background-color: #bba88c !important;
+	border:1px solid #bba88c !important;
+}
+
+.sprites.mark{
+	background-position: 25% 50%;
+}
+
+.sprites.crayon{
+	background-position: 25% 25%;
+}
+
+.sprites.bucket{
+	background-position: 25% 0%;
+}
+
+/* Pencils List */
+
+.sprites.sizes{
+	background-position: 50% 100%;
+}
+
+/* Sizes lines List */
+
+.sprites.lineLarge{
+	background-position: 50% 75%;
+}
+
+.sprites.lineMedium{
+	background-position: 50% 50%;
+}
+
+.sprites.lineSmall{
+	background-position: 50% 25%;
+}
+
+/* Sizes lines List */
+
+.sprites.eraser{
+	background-position: 75% 100%;
+}
+
+/* Sizes eraser List */
+
+.sprites.eraserLarge{
+	background-position: 75% 75%;
+}
+
+.sprites.eraserMedium{
+	background-position: 75% 50%;
+}
+
+.sprites.eraserSmall{
+	background-position: 75% 25%;
+}
+
+/* Sizes eraser List */
+
+.sprites.undo{
+	background-position: 100% 100%;
+}
+
+/* ------------------------- BUTTONS BACKGROUNDS ------------------------- */
+
+
+/* ------------------------- BUTTONS TOOLS ------------------------- */
+
+.list-option{
+	/*display: inline-block;*/
+	cursor: pointer;
+	float: left;
+	margin-left:5px;
+}
+
+.list-option[disabled="disabled"]{
+	opacity: 0.6;
+}
+
+.list-option:first-child{
+	margin-left:0px;
+}
+
+ul.option{
+	/*background: #FFE6BE;*/
+	padding:0%;
+	list-style: none;
+	border-radius: 90px;
+	display: inline-block;
+	position: relative;
+	z-index: 20;
+}
+
+.setRelative{
+	position: relative;
+	overflow: hidden;
+}
+
+.boxLoader{
+	position: fixed;
+  	top: 0%;
+  	left: 0%;
+  	width: 100%;
+  	height: 100%;
+  	background: white;
+  	z-index: 9990;
+  	display: none;
+}
+
+.loader{
+	position: absolute;
+	display: block;
+	top:50%;
+	left:50%;
+	margin-top:-16px;
+	margin-left:-8px;
+	overflow: hidden;
+}
+
+.as-item{
+	z-index: 2;
+	border-radius: 90px;
+}
+
+.icon{
+	box-shadow:3px 5px 7px -2px silver;
+	background-color: #FFE6BE;
+}
+
+ul.tool{
+	position: absolute;
+	bottom:0%;
+	padding:20% 0% 120%;
+	width:100%;
+	border-radius: 100px;
+	background: #FFE6BE;
+	z-index: -1;
+	display: block;
+	opacity: 0;
+	visibility:hidden;
+	max-height:0px;
+	overflow: hidden;
+	transition:all .3s;
+	-moz-transition:all .3s;
+	-o-transition:all .3s;
+	-webkit-transition:all .3s;
+	-ms-transition:all .3s;
+}
+
+.as-item ul.tool.slide{
+	max-height: 3000px;
+	overflow: visible;
+	opacity: 1;
+	visibility:visible;
+	padding-bottom: 140%;	
+}
+
+.as-item ul.tool.slide .wrapColor{
+	visibility: visible;
+}
+	
+.option li.subItem{
+	margin:15px auto;
+}
+
+ .option li.subItem:first-child, .option li.subItem:last-child{
+	margin:0;
+}
+
+.option .rounded{
+	width:58px;
+	height:58px;
+	border-radius: 50%;
+	display: block;
+	cursor: pointer;
+	text-indent: -999999px;
+	overflow: hidden;
+	margin:0 auto;
+}
+
+.selected-color{
+	box-shadow:inset 0 0 0px 4px #BAA78C;
+	background-image: none !important;
+}
+
+/* ------------------------- BUTTONS TOOLS ------------------------- */
+
+li.pic{
+	width:61px;
+	height:19px;
+	background:url('../sources/src/frames.png') no-repeat center center;
+}
+
+@media screen and (orientation:portrait){
+    .alert{
+    	display: none;
+    }
+}
+
+@media screen and (orientation:landscape){
+    .alert{
+    	display: block !important;
+    	z-index: 999999999999999;
+    }
+}
+
+.canvas-slide-container{
+	position: relative;
+	overflow: hidden;
+	margin:0 auto;
+}
+
+.canvas-slide-container div.sliderCanvas{
+	position: absolute;
+	z-index: 1;
+	transform: translateX(-100%) ;
+	-o-transform: translateX(-100%) ;
+	-webkit-transform: translateX(-100%) ;
+	-ms-transform: translateX(-100%) ;
+	-moz-transform: translateX(-100%) ;
+
+	transition:all .5s;
+	-webkit-transition:all .5s;
+	-moz-transition:all .5s;
+	-o-transition:all .5s;
+	-ms-transition:all .5s;
+}
+
+.canvas-slide-container div.sliderCanvas.current{
+	z-index: 10;
+	transform: translateX(0%);
+	-o-transform: translateX(0%);
+	-webkit-transform: translateX(0%);
+	-ms-transform: translateX(0%);
+	-moz-transform: translateX(0%);	
+}
+
+.canvas-slide-container div.sliderCanvas.current ~ div.sliderCanvas{
+	transform: translateX(100%) ;
+	-o-transform: translateX(100%) ;
+	-webkit-transform: translateX(100%) ;
+	-ms-transform: translateX(100%) ;
+	-moz-transform: translateX(100%) ;
+}
+
+.alert{
+	width:100%;
+	height:100%;
+	left:0;
+	top:0;
+	position: fixed;
+	background:white;
+	color:white;
+	text-align: center;
+	display: none;
+}
+
+.alert div{
+	/*
+	display: inline-block;
+	font-size: 20px;
+	font-weight: bold;
+	position: relative;
+	height: 100%;
+	width: 100%;
+	top: 0%;
+	left: 0%;
+	text-align: center;
+	background: url('../sources/src/rotate-screen.png') no-repeat center center;
+	background-size: contain;
+	*/
+	display: block;
+	width: 100%;
+	position: relative;
+	height: 0;
+	padding: 56.25% 0 0 0;
+	overflow: hidden;
+}
+
+.alert div > img{
+	/*position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	margin-left: -10%;
+  	margin-top: -10%;*/
+	position: absolute;
+	display: block;
+	max-width: 100%;
+	max-height: 100%;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+.downloader{
+	width:100%;
+	height:100%;
+	position: fixed;
+	background: url('../sources/src/blur.png') repeat center center;
+	top:0px;
+	left:0px;
+	z-index: 99999;
+	display: none;
+}
+
+#downloader:active{
+	border:5px solid yellow;
+}
+
+.cc{
+	z-index: 111111;
+	border:10px solid blue;
+	background: white;
+}
+
+.boxColors{
+	position: absolute;
+	width:96%;
+	height:96%;
+	top:2%;
+	left:2%;
+}
+
+.wrapColor{
+	display: inline-block;
+	background: rgba(192, 192, 192, 1);
+	position: absolute;
+	left:0;
+	bottom:68px;
+	background:#FFE5BF;
+	padding:10px;
+	border-radius:20px 20px 20px 0px;
+}
+
+div.color{
+	max-width:50px !important;
+	max-height:50px !important;
+	float: left;
+	border-radius:50%;
+	box-shadow: inset 14px 10px 0px -11px rgba(0, 0, 0, 0.5);
+	margin-right:10px;
+	margin-top:10px;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (orientation: portrait){
+	.sprites{
+		width:48px;
+		height:48px;
+	}
+	
+	.list-option{
+		margin-left:10px;
+	}
+
+	.list-option:first-child{
+		margin-left:0px;
+	}
+
+	.option .rounded{
+		width:42px;
+		height:42px;
+	}
+
+	.wrapColor{
+		bottom:52px;
+	}
+}
+
+.showAS{
+	opacity:1;
+	visibility: visible;
+	z-index: 99999999999;
+}
+
+/*@media only screen and (max-device-width: 1024px){
+	.virtualBody, .alert{
+		position: absolute;
+	}
+}*/

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Activity Sheet</title>
+	<meta charset="utf-8">
+	<meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=no">
+	<meta name=apple-mobile-web-app-capable content="yes">
+
+	<link type="text/css" href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+	<link type="text/css" href="css/style.css" rel="stylesheet"/>
+
+	<script type="text/javascript" src="lib/jquery-1.11.3.min.js"></script>
+	<!--<script type="text/javascript" src="lib/angular.min.js"></script>-->
+
+	<script type="text/javascript" src="lib/jsPDF/jspdf.js"></script>
+	<script type="text/javascript" src="lib/jsPDF/Deflate/adler32cs.js"></script>
+	<script type="text/javascript" src="lib/jsPDF/FileSaver.js/FileSaver.js"></script>
+	<script type="text/javascript" src="lib/jsPDF/Blob.js/BlobBuilder.js"></script>
+	<script type="text/javascript" src="lib/jsPDF/jspdf.plugin.addimage.js"></script>
+	<script type="text/javascript" src="lib/jsPDF/jspdf.plugin.standard_fonts_metrics.js"></script>
+	<script type="text/javascript" src="lib/jsPDF/jspdf.plugin.split_text_to_size.js"></script>
+	<script type="text/javascript" src="lib/jsPDF/jspdf.plugin.from_html.js"></script>
+
+	<script type="text/javascript" src="lib/dialogElegant.js"></script>
+	<script type="text/javascript" src="lib/preloaderCanvas.js"></script>
+	<script type="text/javascript" src="lib/main.js"></script>
+</head>
+<body>
+	<div class="container-fluid wrapper">
+		<!--Button Headers-->
+		<section class="sectionButtons no-print">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xs-10 col-md-11 col-lg-11 text-left">
+						<div class="row">
+							<ul class="list-inline list-pagination btn-header">
+								<li>
+									<span class="btns prev btn-sprites pagers" disabled="disabled" data-dir="prev" title="Previous"></span>
+								</li>
+
+								<li>
+									<span class="btns next btn-sprites pagers" data-dir="next" title="Next"></span>
+								</li>
+
+								<li>
+									<span class="btns btn-sprites new" title="New File"></span>
+								</li>
+
+								<li>
+									<span class="btns btn-sprites save" id="saveAs" title="Save"></span>
+								</li>
+
+								<li>
+									<span class="btns btn-sprites print" id="print" title="Print"></span>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<!--<div class="col-xs-2 col-md-1 col-lg-1 text-right">
+						<div class="row">
+							<ul class="list-inline btn-header">
+								<li>
+									<span class="btns btn-sprites closed" id="close" title="Close"></span>
+								</li>
+							</ul>
+						</div>
+					</div>-->
+				</div>
+			</div>
+		</section>
+		
+
+		<!--Canvas Container-->
+		<section id="wrapCanvas">
+			<div class="row">
+				<div class="container-fluid text-center">
+					<div class="canvas-slide-container" id="canvas-slide-container">
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--Canvas Container-->
+
+
+		<!--Button Tools-->
+		<section class="tools no-print" title="Colors" style="border:1px solid transparent;">
+			<div class="container-fluid text-center">
+				<div class="row">
+					<section class="fluid-tools">
+						<div class="list-option">
+							<ul class="option">
+								<li class="item">
+									<ul class="tool">
+										<div class="wrapColor">
+											<div class="colorBox">
+												
+											</div>
+										</div>
+									</ul>
+									<span class="icon sprites paint" data-default="paint"></span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="list-option" title="Tools">
+							<ul class="option">
+								<li class="item">
+									<ul class="tool">
+										<li class="subItem">
+											<span data-pencil="bucket" data-class="bucket" class="rounded sprites bucket">Bucket</span>
+										</li>
+
+										<li class="subItem">
+											<span data-pencil="crayon" data-class="crayon" class="rounded sprites crayon">Crayon</span>
+										</li>
+
+										<li class="subItem">
+											<span data-pencil="mark" data-class="mark" class="rounded sprites mark">Mark</span>
+										</li>
+
+										<li class="subItem">
+											<span data-pencil="brush" data-class="brush" class="rounded sprites brush">Brush</span>
+										</li>
+									</ul>
+									<span class="icon sprites tableColors" data-default="tableColors"></span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="list-option canDisabled" title="Line Weight">
+							<ul class="option">
+								<li class="item">
+									<ul class="tool">
+										<li class="subItem">
+											<span data-linewidth="10" data-class="lineSmall" class="rounded sprites lineSmall">2</span>
+										</li>
+
+										<li class="subItem">
+											<span data-linewidth="15" data-class="lineMedium" class="rounded sprites lineMedium">3</span>
+										</li>
+
+										<li class="subItem">
+											<span data-linewidth="20" data-class="lineLarge" class="rounded sprites lineLarge">4</span>
+										</li>
+									</ul>
+									<span class="icon sprites sizes" data-default="sizes"></span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="list-option" title="Eraser">
+							<ul class="option">
+								<li class="item">
+									<ul class="tool">
+										<li class="subItem">
+											<span data-size="10" data-class="eraserSmall" class="rounded sprites eraserSmall">1</span>
+										</li>
+
+										<li class="subItem">
+											<span data-size="15" data-class="eraserMedium" class="rounded sprites eraserMedium">2</span>
+										</li>
+
+										<li class="subItem">
+											<span data-size="20" data-class="eraserLarge" class="rounded sprites eraserLarge">3</span>
+										</li>
+									</ul>
+									<span class="icon sprites eraser" data-default="eraser"></span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="list-option" title="Undo">
+							<ul class="option">
+								<li class="item undone">
+									<span class="icon sprites undo" data-default="icon sprites undo"></span>
+								</li>
+							</ul>
+						</div>
+					</section>
+				</div><!--Cierre Row -->
+			</div><!--Cierre Container Fluid -->
+		</section><!--Cierre Section -->
+	</div>
+
+	<div class="alert no-print">
+		<span></span>
+	</div>
+
+	<section class="boxLoader no-print">
+		<div class="loader">
+			<img src="sources/src/loader.gif" alt="loading">
+		</div>
+	</section>
+	
+
+	<div class="popBox no-print">
+		<div class="boxMsg">
+			<section class="message text-center" id="text"></section>
+			<section class="footer">
+				<div class="border-top">
+					<div class="col-xs-6 text-center">
+						<div class="row border-right">
+							<span class="center-block ok"><b>Yes</b></span>
+						</div>
+					</div>
+					<div class="col-xs-6 text-center">
+						<div class="row">
+							<span class="center-block cancel"><b>No</b></span>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</body>
+</html>
